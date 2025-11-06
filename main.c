@@ -5,19 +5,24 @@ int main(int argc, char *argv[])
 {
     char input[100];
     FILE* fp;
-    int i; 
+    char c;
     
-    fp = fopen("sample.txt","w");
+    fp = fopen("sample.txt", "r");
     
-    for(i=0;i<3;i++)
+    if(fp == NULL)
     {
-       printf("input a word:");
-       scanf("%s", input); // 배열은 &사용 안함
-     
-       fprintf(fp,"%s\n", input);
-     }
-    
-    fclose(fp); 
+          printf("Failed to open file! \n");
+          system("PAUSE");
+          return -1;
+          
+    }
+
+    while((c = fgetc(fp)) != EOF)
+    {
+             putchar(c);
+    }
+
+    fclose(fp);
     
   system("PAUSE");	
   return 0;
